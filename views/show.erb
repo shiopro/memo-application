@@ -5,7 +5,10 @@
     <form action="/memos/<%= params[:id] %>/edit" method="get">
       <input type="submit" class="btn-primary" value="編集">
     </form>
-    <input type="submit" class="btn-primary" value="削除">
+    <form action="/memos/<%= params[:id] %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" class="btn-primary" value="削除">
+    </form>
     <form action="/memos" method="get">
       <input type="submit" class="btn-primary" value="戻る">
     </form>
