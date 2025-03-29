@@ -30,6 +30,13 @@ get '/memos/:id' do
   erb :show
 end
 
+get '/memos/:id/edit' do
+  memos = get_memos(FILE_PATH)
+  @title = memos[params[:id]]['title']
+  @content = memos[params[:id]]['content']
+  erb :edit
+end
+
 post '/memos' do
   title = params[:title]
   content = params[:content]
@@ -40,4 +47,15 @@ post '/memos' do
   save_memos(FILE_PATH, memos)
 
   redirect '/memos'
+end
+
+patch '/memos/:id' do
+  title = params[:title]
+  content = params[:content]
+
+  memos = get_memos(FILE_PATH)
+  memos[params[:id]] = { 'title' => title, 'content' => content }
+  save_memos(FILE_PATH, memos)
+
+  redirect "/memos/#{params[:id]}"
 end

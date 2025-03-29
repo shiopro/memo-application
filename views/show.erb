@@ -2,7 +2,9 @@
   <p class="title"><%= @title %></p>
   <p class="content"><%= @content.gsub(/\n/, '<br/>') %></p>
   <div class="btn-container">
-    <input type="submit" class="btn-primary" value="編集">
+    <form action="/memos/<%= params[:id] %>/edit" method="get">
+      <input type="submit" class="btn-primary" value="編集">
+    </form>
     <input type="submit" class="btn-primary" value="削除">
     <form action="/memos" method="get">
       <input type="submit" class="btn-primary" value="戻る">
