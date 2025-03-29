@@ -1,6 +1,6 @@
 <div class="container">
-  <p class="title"><%= @title %></p>
-  <p class="content"><%= @content.gsub(/\n/, '<br/>') %></p>
+  <p class="title"><%= CGI.escapeHTML(@title) %></p>
+  <p class="content"><%= CGI.escapeHTML(@content).gsub(/\n/, '<br/>') %></p>
   <div class="btn-container">
     <form action="/memos/<%= params[:id] %>/edit" method="get">
       <input type="submit" class="btn-primary" value="編集">
