@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  height: 100%;
+}
+
+
+header {
+  padding: 30px;
+}
+
+.container {
+  margin: 50px 30px;
+}
+
+.btn-primary {
+  text-decoration: none;
+  background-color: darkgrey;
+  color: white;
+  padding: 10px 30px;
+  font-weight: bold;
+  border-radius: 10px;
+  font-size: 18px;
+  border: 1px solid gray;
+}
+
+.btn-primary:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+ul {
+  font-size: 20px;
+}
