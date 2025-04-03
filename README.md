@@ -12,6 +12,11 @@
 ```
 % bundle install
 ```
+`data/memos.json`を作成する
+```
+% mkdir -p data
+% echo "{}" > data/memos.json
+```
 sinatraを起動させる
 ```
 % ruby memo.rb -p 4567
