@@ -1,0 +1,16 @@
+<div class="container">
+  <p class="title"><%= CGI.escapeHTML(@title) %></p>
+  <p class="content"><%= CGI.escapeHTML(@content).gsub(/\n/, '<br/>') %></p>
+  <div class="btn-container">
+    <form action="/memos/<%= params[:id] %>/edit" method="get">
+      <input type="submit" class="btn-primary" value="編集">
+    </form>
+    <form action="/memos/<%= params[:id] %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" class="btn-primary" value="削除">
+    </form>
+    <form action="/memos" method="get">
+      <input type="submit" class="btn-primary" value="戻る">
+    </form>
+  </div>
+</div>
