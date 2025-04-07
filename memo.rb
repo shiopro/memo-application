@@ -8,8 +8,16 @@ require 'pg'
 
 FILE_PATH = 'data/memos.json'
 
+def conn
+  @conn ||= PG.connect(dbname: 'memo_app')
+end
+
+def read_memos
+  conn.exec('SELECT * FROM memos')
+end
+
 get '/memos' do
-  @memos = get_memos(FILE_PATH)
+  @memos = read_memos
   erb :index
 end
 
