@@ -4,6 +4,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
 require 'cgi'
+require 'pg'
 
 FILE_PATH = 'data/memos.json'
 
