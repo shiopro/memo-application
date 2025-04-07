@@ -8,14 +8,6 @@ require 'pg'
 
 FILE_PATH = 'data/memos.json'
 
-def get_memos(file_path)
-  File.open(file_path) { |f| JSON.parse(f.read) }
-end
-
-def save_memos(file_path, memos)
-  File.open(file_path, 'w') { |f| JSON.dump(memos, f) }
-end
-
 get '/memos' do
   @memos = get_memos(FILE_PATH)
   erb :index
