@@ -29,6 +29,10 @@ def edit_memo(title, content, id)
   conn.exec_params('UPDATE memos SET title = $1, content = $2 WHERE id = $3;', [title, content, id])
 end
 
+def delete_memo(id)
+  conn.exec_params('DELETE FROM memos WHERE id = $1;', [id])
+end
+
 get '/memos' do
   @memos = read_memos
   erb :index
@@ -69,9 +73,7 @@ patch '/memos/:id' do
 end
 
 delete '/memos/:id' do
-  memos = get_memos(FILE_PATH)
-  memos.delete(params[:id])
-  save_memos(FILE_PATH, memos)
+  delete_memo(params[:id])
 
   redirect '/memos'
 end
