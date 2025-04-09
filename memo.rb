@@ -51,11 +51,7 @@ end
 post '/memos' do
   title = params[:title]
   content = params[:content]
-
-  memos = get_memos(FILE_PATH)
-  id = ((memos.keys.map(&:to_i).max || 0) + 1).to_s
-  memos[id] = { 'title' => title, 'content' => content }
-  save_memos(FILE_PATH, memos)
+  post_memo(title, content)
 
   redirect '/memos'
 end
