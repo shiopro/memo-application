@@ -21,6 +21,10 @@ def read_memo(id)
   result[0]
 end
 
+def post_memo(title, content)
+  conn.exec_params('INSERT INTO memos(title, content) VALUES ($1, $2);', [title, content])
+end
+
 get '/memos' do
   @memos = read_memos
   erb :index
