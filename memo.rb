@@ -25,6 +25,10 @@ def post_memo(title, content)
   conn.exec_params('INSERT INTO memos(title, content) VALUES ($1, $2);', [title, content])
 end
 
+def edit_memo(title, content, id)
+  conn.exec_params('UPDATE memos SET title = $1, content = $2 WHERE id = $3;', [title, content, id])
+end
+
 get '/memos' do
   @memos = read_memos
   erb :index
@@ -42,9 +46,9 @@ get '/memos/:id' do
 end
 
 get '/memos/:id/edit' do
-  memos = get_memos(FILE_PATH)
-  @title = memos[params[:id]]['title']
-  @content = memos[params[:id]]['content']
+  memos = read_memo(params[:id])
+  @title = memos['title']
+  @content = memos['content']
   erb :edit
 end
 
@@ -59,10 +63,7 @@ end
 patch '/memos/:id' do
   title = params[:title]
   content = params[:content]
-
-  memos = get_memos(FILE_PATH)
-  memos[params[:id]] = { 'title' => title, 'content' => content }
-  save_memos(FILE_PATH, memos)
+  edit_memo(title, content, params[:id])
 
   redirect "/memos/#{params[:id]}"
 end
