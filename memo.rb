@@ -16,6 +16,11 @@ def read_memos
   conn.exec('SELECT * FROM memos')
 end
 
+def read_memo(id)
+  result = conn.exec_params('SELECT * FROM memos WHERE id = $1;', [id])
+  result[0]
+end
+
 get '/memos' do
   @memos = read_memos
   erb :index
@@ -26,9 +31,9 @@ get '/memos/new' do
 end
 
 get '/memos/:id' do
-  memos = get_memos(FILE_PATH)
-  @title = memos[params[:id]]['title']
-  @content = memos[params[:id]]['content']
+  memos = read_memo(params[:id])
+  @title = memos['title']
+  @content = memos['content']
   erb :show
 end
 
