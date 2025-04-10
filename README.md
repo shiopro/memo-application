@@ -12,10 +12,23 @@
 ```
 % bundle install
 ```
-`data/memos.json`を作成する
+PostgreSQLにログインする
+データベースを作成
 ```
-% mkdir -p data
-% echo "{}" > data/memos.json
+% CREATE DATABASE memo_app;
+```
+SQLファイルを作成
+(memo_data.sqlの中身)
+```
+CREATE TABLE memos (
+  id serial PRIMARY KEY,
+  title varchar(255),
+  content text
+);
+```
+テーブルを作成する
+```
+% psql -d memo_app -f memo_data.sql
 ```
 sinatraを起動させる
 ```
